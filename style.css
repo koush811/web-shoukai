@@ -36,6 +36,7 @@ body{
 .links{
     width: 100%;
     transform: translateX(0%);
+    transition: .5s;
 }
 
 .links.hide{
@@ -53,10 +54,11 @@ body{
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: rgb(62, 62, 62);
 }
 
 .side a:nth-child(2n){
-    background-color: rgb(62, 62, 62);
+    background-color: rgb(0, 0, 0);
 }
 
 .side #open{
@@ -124,18 +126,34 @@ main div ,h2 ,h1{
     color: white;
 }
 
-.sakuhin{
-    flex-direction: column;
-    width: 80%;
-    height: 700px;
-    background-color: rgb(40, 40, 40);
-    margin: 50px;
-    border-radius: 10px;
-    position: relative;
+.content{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: rgb(40, 40, 40);
+    border-radius: 20px;
+    margin: 50px;
+    width: 80%;
+    padding: 20px 0px;
+}
+
+.question{
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.answer{
+    display: none;
+}
+
+.answer.active{
+    display: block;
+}
+
+.sakuhin{
+    flex-direction: column;
+    height: 700px;
 }
 
 .swiper{

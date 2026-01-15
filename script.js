@@ -27,4 +27,15 @@ sidebtn.addEventListener('click',()=>{
     links.classList.toggle('hide')
 })
 
+document.querySelectorAll('.question').forEach(e => {
+    e.addEventListener('click',()=>{
+        const answer = e.querySelector('.answer')
+        answer.classList.toggle('active')
+    })
+});
+
+
+
+
+
 
