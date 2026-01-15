@@ -42,6 +42,11 @@ body{
     transform: translateX(-100%);
 }
 
+.page{
+    margin-top: 100px;
+    width: 100%;
+}
+
 .side a{
     text-decoration: none;
     color: white;
@@ -98,21 +103,7 @@ main{
     object-fit: cover;
 }
 
-.swiper {
-    width: 80%;
-    height: 500px;
-    margin: 50px;
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-}
 
-.swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(40, 40, 40);
-}
 
 .hero h1{
     position: absolute;
@@ -129,19 +120,45 @@ main{
     align-items: center;
 }
 
-main div{
+main div ,h2 ,h1{
     color: white;
+}
+
+.sakuhin{
+    flex-direction: column;
+    width: 80%;
+    height: 700px;
+    background-color: rgb(40, 40, 40);
+    margin: 50px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.swiper{
+    width: 90%;
+    height: 80%;
+    border: solid black 2px;
+    border-radius: 50px;
 }
 
 .swiper-wrapper{
     width: 100%;
-    height: 300px;
-    z-index: 100;
+    height: 100%;
 }
+
+.swiper-slide{
+    text-align: center;
+}
+
+
 
 /*footer{
     background-color: black;
-    color: white;
+    olor: white;
     display: flex;
     justify-content: center;
     align-items: center;
