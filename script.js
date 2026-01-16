@@ -1,34 +1,34 @@
 const openbtn = document.getElementById('open')
 const side = document.querySelector('.side')
 const main = document.querySelector('main')
+const sidebtn = document.getElementById('sidebtn')
+const linkIdx = document.querySelector('.linkIdx')
 
-const swiper = new Swiper(".swiper",{
+const swiper = new Swiper(".swiper", {
     loop: true,
-    
+
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
     },
 })
 
-openbtn.addEventListener('click',()=>{
+openbtn.addEventListener('click', () => {
     side.classList.toggle('hide')
-    if(openbtn.textContent == ">"){
+    if (openbtn.textContent == ">") {
         openbtn.textContent = "<"
-    }else{
+    } else {
         openbtn.textContent = ">"
     }
 })
 
-const sidebtn = document.getElementById('sidebtn')
-const links = document.querySelector('.links')
 
-sidebtn.addEventListener('click',()=>{
-    links.classList.toggle('hide')
+sidebtn.addEventListener('click', () => {
+    linkIdx.classList.toggle('hide')
 })
 
 document.querySelectorAll('.question').forEach(e => {
-    e.addEventListener('click',()=>{
+    e.addEventListener('click', () => {
         const answer = e.querySelector('.answer')
         answer.classList.toggle('active')
     })
