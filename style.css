@@ -1,14 +1,19 @@
-body{
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
+* {
+    box-sizing: border-box;
 }
 
 html{
     scroll-behavior: smooth;
 }
 
+body{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
 
 .side{
     display: flex;
@@ -22,19 +27,23 @@ html{
     transition: .5s;
     transform: translateX(0%);
     z-index: 100;
+
 }
 
 #sidebtn{
-    width: 95%;
+    width: 100%;
+    height: 5%;
     display: flex;
-    padding-left: 5%;
+    justify-content: center;
+    align-items: center;
     color: white;
     background-color: black;
     overflow: hidden;
+    cursor: e-resize;
 }
 
-.key{
-    margin-right: 10px;
+#sidebtn span {
+    padding: 1em;
 }
 
 .links{
@@ -43,12 +52,27 @@ html{
     transition: .5s;
 }
 
-.links.hide{
-    transform: translateX(-100%);
+.linkIdxContainer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.linkIdx {
+    width: 200%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    transform: translateX(0%);
+    transition: .5s;
+}
+
+.linkIdx.hide{
+    transform: translateX(-50%);
 }
 
 .page{
-    margin-top: 100px;
     width: 100%;
 }
 
@@ -56,8 +80,10 @@ html{
     text-decoration: none;
     color: white;
     width: 100%;
+    height: 10%;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: rgb(62, 62, 62);
 }
 
@@ -124,6 +150,8 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 main div ,h2 ,h1{
@@ -137,7 +165,7 @@ main div ,h2 ,h1{
     flex-direction: column;
     background-color: rgb(40, 40, 40);
     border-radius: 20px;
-    margin: 50px;
+    margin: 50px 0 50px 0;
     width: 80%;
     padding: 20px 0px;
 }
