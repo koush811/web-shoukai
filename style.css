@@ -14,7 +14,7 @@ html{
     display: flex;
     flex-direction: column;
     position: fixed;
-    background-color: rgb(20, 20, 20);
+    background-color: rgba(20, 20, 20, 0.742);
     border-right: solid 3px rgb(87, 87, 87);
     align-items: center;
     height: 100vh;
@@ -72,7 +72,7 @@ html{
     width: 25px;
     height: 100px;
     cursor: pointer;
-    background-color: black;
+    background-color: rgb(65, 65, 65);
     color: white;
     display: flex;
     align-items: center;
@@ -92,7 +92,7 @@ html{
 main{
     display: flex;
     align-items: center;
-    background-color: rgb(62, 62, 62);
+    background-color: rgb(20, 20, 20);
     height: 100%;
     flex-direction: column;
 }
@@ -109,8 +109,6 @@ main{
     object-fit: cover;
 }
 
-
-
 .hero h1{
     position: absolute;
     top: 50%;
@@ -124,6 +122,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-shadow: 10px 10px 10px #000;
 }
 
 main div ,h2 ,h1{
@@ -135,22 +134,55 @@ main div ,h2 ,h1{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(40, 40, 40);
+    background-color: rgb(43, 43, 43);
     border-radius: 20px;
     margin: 50px;
     width: 80%;
-    padding: 20px 0px;
+    padding: 20px 20px;
+}
+
+.gaiyou{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.left{
+    width: 40%;
+}
+
+.right{
+    width: 40%;
+}
+
+.gaiyou img{
+    overflow: hidden;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.dev h3{
+    text-decoration: underline;
+    color: rgb(0, 119, 255);
+}
+
+.qanda{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .question{
     cursor: pointer;
     margin-top: 10px;
-    width: 90%;
-    height: 50px;
+    width: 250px;
+    height: 500px;
     border-radius: 10px;
     border: solid .5px black;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    transition: .5s;
     align-items: center;
 }
 
@@ -159,8 +191,8 @@ main div ,h2 ,h1{
 }
 
 .answer{
+    margin-top: 20px;
     display: none;
-    margin-left: 30px;
 }
 
 .answer.active{
@@ -187,16 +219,3 @@ main div ,h2 ,h1{
 .swiper-slide{
     text-align: center;
 }
-
-
-
-/*footer{
-    background-color: black;
-    olor: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10%;
-    position: absolute;
-    bottom: 0;
-}*/
