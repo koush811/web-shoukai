@@ -1,17 +1,17 @@
-body{
-    min-height: 100vh; 
-    width: 100%;     
+body {
+    min-height: 100vh;
+    width: 100%;
     margin: 0;
     box-sizing: border-box;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
-html{
+html {
     scroll-behavior: smooth;
-    overflow-y: scroll; 
+    overflow-y: scroll;
 }
 
-#header{
+#header {
     position: fixed;
     top: 0;
     left: 0;
@@ -22,9 +22,9 @@ html{
     flex-direction: column;
     align-items: center;
     background-color: black;
-    z-index: 1000; 
+    z-index: 1000;
 
-} 
+}
 
 #header-resize {
     position: absolute;
@@ -36,35 +36,60 @@ html{
     background-color: gray;
     z-index: 1000;
 }
-#sidebtn{
+
+#sidebtn {
     width: 95%;
     display: flex;
     padding-left: 5%;
     color: white;
     background-color: black;
     overflow: hidden;
+    cursor: pointer;
 }
 
-.key{
+.key {
     margin-right: 10px;
 }
 
-.links{
+.slideWrapper {
+    position: relative;
     width: 100%;
-    transform: translateX(0%);
-    transition: .5s;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
-.links.hide{
-    transform: translateX(-100%);
-}
-
-.page{
-    margin-top: 100px;
+.links {
     width: 100%;
+    transition: all .5s ease-in-out;
 }
 
-header a{
+.links:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.links:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+
+.links.scrolled:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: -100%;
+}
+
+.links.scrolled:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header a {
     text-decoration: none;
     color: white;
     width: 100%;
@@ -73,36 +98,36 @@ header a{
     background-color: rgb(62, 62, 62);
 }
 
-header a:nth-child(2n){
+header a:nth-child(2n) {
     background-color: rgb(0, 0, 0);
 }
 
 
 #main {
-  margin-left: 20vw;
-  padding-bottom: 15vh; 
-  padding-left: 6px;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 0; 
+    margin-left: 20vw;
+    padding-bottom: 15vh;
+    padding-left: 6px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 0;
 }
 
-.hero{
+.hero {
     width: 100%;
     height: 500px;
     position: relative;
 }
 
-.hero img{
+.hero img {
     height: 100%;
     width: 100%;
     overflow: hidden;
 }
 
-.hero h1{
+.hero h1 {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -118,11 +143,13 @@ header a:nth-child(2n){
     text-shadow: 10px 10px 10px #000;
 }
 
-main div ,h2 ,h1{
+main div,
+h2,
+h1 {
     color: white;
 }
 
-.content{
+.content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,38 +161,38 @@ main div ,h2 ,h1{
     padding: 20px 20px;
 }
 
-.gaiyou{
+.gaiyou {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.left{
+.left {
     width: 40%;
 }
 
-.right{
+.right {
     width: 40%;
 }
 
-.gaiyou img{
+.gaiyou img {
     overflow: hidden;
     width: 80%;
     border-radius: 10px;
 }
 
-.dev h3{
+.dev h3 {
     text-decoration: underline;
     color: rgb(0, 119, 255);
 }
 
-.qanda{
+.qanda {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.question{
+.question {
     cursor: pointer;
     margin-top: 10px;
     width: 250px;
@@ -179,72 +206,61 @@ main div ,h2 ,h1{
     align-items: center;
 }
 
-.question:hover{
+.question:hover {
     background-color: gray;
 }
 
-.answer{
+.answer {
     margin-top: 20px;
     display: none;
 }
 
-.answer.active{
+.answer.active {
     display: block;
 }
 
-.sakuhin{
+.sakuhin {
     flex-direction: column;
-    height: 700px; 
+    height: 700px;
 }
 
-.swiper{
+.swiper {
     width: 100%;
     height: 100%;
     border: solid black 2px;
     border-radius: 50px;
 }
 
-.swiper-wrapper{
+.swiper-wrapper {
     width: 100%;
     height: 100%;
 }
 
-.swiper-slide{
+.swiper-slide {
     text-align: center;
 }
 
-footer{
+footer {
     position: fixed;
     right: 0;
     bottom: 0;
     width: 80vw;
-    height: 15vh; 
+    height: 15vh;
     max-height: 30vh;
     background: #000000;
     color: white;
     display: flex;
     flex-direction: column;
-    
-    font-family: Consolas, "Courier New", monospace;
-} 
+    align-items: center;
+}
 
-#footer-resize{
+#footer-resize {
     position: absolute;
     top: 0;
     right: 0;
     height: 6px;
-    width: 100vw;
+    width: 80vw;
     background-color: gray;
     cursor: n-resize;
     z-index: 1000;
 }
-
-.terminal{
-    display: flex;
-    width: 90%;
-}
-
-
-
-
-

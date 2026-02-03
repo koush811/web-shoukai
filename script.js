@@ -12,10 +12,13 @@ const swiper = new Swiper(".swiper",{
 })
 
 const sidebtn = document.getElementById('sidebtn')
-const links = document.querySelector('.links')
+const sliderWrapper = document.querySelector(".slideWrapper")
+const sliderInner = sliderWrapper.querySelectorAll(".links")
 
 sidebtn.addEventListener('click',()=>{
-    links.classList.toggle('hide')
+    sliderInner.forEach((elem) => {
+        elem.classList.toggle("scrolled")
+    })
 })
 
 document.querySelectorAll('.question').forEach(e => {
