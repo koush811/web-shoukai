@@ -252,9 +252,8 @@ footer{
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
     font-family: Consolas, "Courier New", monospace;
-} 
+}
 
 #footer-resize{
     position: absolute;
