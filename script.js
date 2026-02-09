@@ -46,7 +46,7 @@ headerRerize.addEventListener('mousedown',()=>{
         header.style.width = `${wnew}px`
         main.style.marginLeft = `${wnew}px`
         footer.style.left = `${wnew}px`
-        footer.style.width = `calc(100vw - ${wnew}px)`
+        footer.style.marginLeft = `${wnew}px)`
     }
     document.addEventListener('mousemove', onMove)
     
@@ -64,8 +64,8 @@ footerRerize.addEventListener('mousedown', () => {
     if (newHeight > maxHeight) newHeight = maxHeight
     if (newHeight < 6) newHeight = 6
 
-    footer.style.height = newHeight + 'px'
-    main.style.marginBottom = newHeight + 'px'
+    footer.style.height = `${newHeight}px`
+    main.style.marginBottom = `${newHeight}px`
   }
 
   document.addEventListener('mousemove', onMove)
