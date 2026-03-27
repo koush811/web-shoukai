@@ -252,7 +252,6 @@ header a:nth-child(2n) {
 
 .terminal {
   display: flex;
-  align-items: center;
   width: 90%;
   margin: auto;
 }
@@ -268,6 +267,7 @@ header a:nth-child(2n) {
   border: none;
   color: white;
   font-size: 16px;
+  margin: 0;
 }
 
 .command:focus {

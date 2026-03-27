@@ -22,10 +22,16 @@ function App() {
     const onHeaderMouseDown = () => {
       const onMove = (event) => {
         let newWidth = event.clientX
+        const minWidth = 300
+        const hideThreshold = minWidth - 100
         const maxWidth = window.innerWidth * 0.4
 
         if (newWidth > maxWidth) newWidth = maxWidth
-        if (newWidth < 300) newWidth = 300
+        if (newWidth <= hideThreshold) {
+          newWidth = 0
+        } else if (newWidth < minWidth) {
+          newWidth = minWidth
+        }
 
         setHeaderWidth(newWidth)
       }
@@ -69,31 +75,32 @@ function App() {
 
   const questions = [
     {
-      question: 'Q: ひろくんの昨日の睡眠時間は？',
-      answer: 'A: ６時間',
+      question: 'Q: プログラミングやったことなくてもでも大丈夫？',
+      answer: 'A: もちろん、やる気さえあれば、初心者でも大歓迎',
     },
     {
-      question: 'Q: 翔くんの昨日の睡眠時間は？',
-      answer: 'A: ５時間３５分',
+      question: 'Q: どんな技術を使うの？',
+      answer: 'A: HTML,CSS,JavaScript,PHPなど',
     },
     {
-      question: 'Q: 伊藤くんの昨日の睡眠時間は？',
-      answer: 'A: ５時間',
+      question: 'Q:Web班に向いている人は？',
+      answer: 'A: 何か作るのが好きな人　パソコン触るのが好きな人',
     },
     {
-      question: 'Q: はくくんの昨日の睡眠時間は？',
-      answer: 'A: 7時半',
+      question: 'Q: 先輩方は優しい？',
+      answer: 'A: たぶん、おそらく優しいと思われます',
     },
   ]
 
   const headerStyle = { width: `${headerWidth}px` }
+  const safeFooterWidth = Math.max(window.innerWidth - headerWidth, 0)
   const mainStyle = {
     marginLeft: `${headerWidth}px`,
     paddingBottom: footerHeight ? `${footerHeight}px` : undefined,
   }
   const footerStyle = {
     left: `${headerWidth}px`,
-    width: `calc(100% - ${headerWidth}px)`,
+    width: `${safeFooterWidth}px`,
     height: footerHeight ? `${footerHeight}px` : undefined,
   }
 
@@ -134,7 +141,7 @@ function App() {
             <h3>主にやっていること</h3>
             <div>webサイト、webアプリの制作(webでできることは何をしてもOK)</div>
             <h3>面白いところ</h3>
-            <div>幅広い分野に触れられる（HTML,CSS,JS,PHPなど）</div>
+            <div>自由度が高い！</div>
             <h3>班の目標</h3>
             <div>世界大会に出場！</div>
           </div>
