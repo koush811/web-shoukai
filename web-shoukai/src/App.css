@@ -3,24 +3,30 @@
   top: 0;
   left: 0;
   width: 300px;
-  max-width: 40vw;
+  max-width: 20vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #000;
+  overflow: visible;
   z-index: 1000;
 }
 
 #header-resize {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -6px;
   width: 6px;
   height: 100%;
   cursor: ew-resize;
   background-color: gray;
+  transition: background-color 0.2s ease;
   z-index: 1000;
+}
+
+#header-resize.active {
+  background-color: #4fc3f7;
 }
 
 #sidebtn {
@@ -247,7 +253,12 @@ header a:nth-child(2n) {
   width: 100%;
   background-color: gray;
   cursor: n-resize;
+  transition: background-color 0.2s ease;
   z-index: 1000;
+}
+
+#footer-resize.active {
+  background-color: #4fc3f7;
 }
 
 .terminal {

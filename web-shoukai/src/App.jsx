@@ -5,11 +5,17 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import './App.css'
 
+const HEADER_MIN_WIDTH = 300
+const HEADER_HIDE_THRESHOLD_OFFSET = 100
+
 function App() {
   const [isLinksScrolled, setIsLinksScrolled] = useState(false)
   const [activeQuestion, setActiveQuestion] = useState(null)
-  const [headerWidth, setHeaderWidth] = useState(300)
+  const [headerWidth, setHeaderWidth] = useState(HEADER_MIN_WIDTH)
   const [footerHeight, setFooterHeight] = useState(null)
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
+  const [isHeaderResizing, setIsHeaderResizing] = useState(false)
+  const [isFooterResizing, setIsFooterResizing] = useState(false)
 
   useEffect(() => {
     const headerResize = document.getElementById('header-resize')
@@ -20,17 +26,19 @@ function App() {
     }
 
     const onHeaderMouseDown = () => {
+      setIsHeaderResizing(true)
+
       const onMove = (event) => {
+        const maxWidth = window.innerWidth * 0.2
+        const hideThreshold = HEADER_MIN_WIDTH - HEADER_HIDE_THRESHOLD_OFFSET
+        const minVisibleWidth = Math.min(HEADER_MIN_WIDTH, maxWidth)
         let newWidth = event.clientX
-        const minWidth = 300
-        const hideThreshold = minWidth - 100
-        const maxWidth = window.innerWidth * 0.4
 
         if (newWidth > maxWidth) newWidth = maxWidth
         if (newWidth <= hideThreshold) {
           newWidth = 0
-        } else if (newWidth < minWidth) {
-          newWidth = minWidth
+        } else if (newWidth < minVisibleWidth) {
+          newWidth = minVisibleWidth
         }
 
         setHeaderWidth(newWidth)
@@ -38,6 +46,7 @@ function App() {
 
       const onMouseUp = () => {
         document.removeEventListener('mousemove', onMove)
+        setIsHeaderResizing(false)
       }
 
       document.addEventListener('mousemove', onMove)
@@ -45,6 +54,8 @@ function App() {
     }
 
     const onFooterMouseDown = () => {
+      setIsFooterResizing(true)
+
       const onMove = (event) => {
         const vh = window.innerHeight
         let newHeight = vh - event.clientY
@@ -58,18 +69,34 @@ function App() {
 
       const onMouseUp = () => {
         document.removeEventListener('mousemove', onMove)
+        setIsFooterResizing(false)
       }
 
       document.addEventListener('mousemove', onMove)
       document.addEventListener('mouseup', onMouseUp, { once: true })
     }
 
+    const onWindowResize = () => {
+      setViewportWidth(window.innerWidth)
+
+      const maxWidth = window.innerWidth * 0.2
+      setHeaderWidth((prev) => {
+        if (prev === 0) {
+          return 0
+        }
+
+        return Math.min(prev, maxWidth)
+      })
+    }
+
     headerResize.addEventListener('mousedown', onHeaderMouseDown)
     footerResize.addEventListener('mousedown', onFooterMouseDown)
+    window.addEventListener('resize', onWindowResize)
 
     return () => {
       headerResize.removeEventListener('mousedown', onHeaderMouseDown)
       footerResize.removeEventListener('mousedown', onFooterMouseDown)
+      window.removeEventListener('resize', onWindowResize)
     }
   }, [])
 
@@ -92,22 +119,25 @@ function App() {
     },
   ]
 
+  const footerWidth = Math.max(viewportWidth - headerWidth, 0)
   const headerStyle = { width: `${headerWidth}px` }
-  const safeFooterWidth = Math.max(window.innerWidth - headerWidth, 0)
   const mainStyle = {
     marginLeft: `${headerWidth}px`,
     paddingBottom: footerHeight ? `${footerHeight}px` : undefined,
   }
   const footerStyle = {
     left: `${headerWidth}px`,
-    width: `${safeFooterWidth}px`,
+    width: `${footerWidth}px`,
     height: footerHeight ? `${footerHeight}px` : undefined,
   }
 
   return (
     <>
       <header id="header" style={headerStyle}>
-        <div id="header-resize"></div>
+        <div
+          id="header-resize"
+          className={isHeaderResizing ? 'active' : ''}
+        ></div>
         <div id="sidebtn" onClick={() => setIsLinksScrolled((prev) => !prev)}>
           <div className="key">&gt;</div> リンク表示
         </div>
@@ -197,7 +227,10 @@ function App() {
       </main>
 
       <footer id="footer" style={footerStyle}>
-        <div id="footer-resize"></div>
+        <div
+          id="footer-resize"
+          className={isFooterResizing ? 'active' : ''}
+        ></div>
         <div className="terminal">
           <input type="text" className="command" placeholder="メッセージ" />
           <span className="prompt"></span>
