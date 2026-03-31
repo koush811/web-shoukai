@@ -7,6 +7,7 @@ import './App.css'
 
 const HEADER_MIN_WIDTH = 300
 const HEADER_HIDE_THRESHOLD_OFFSET = 100
+const FOOTER_POSTS_STORAGE_KEY = 'FOOTER_POSTS'
 
 function App() {
   const [isLinksScrolled, setIsLinksScrolled] = useState(false)
@@ -16,6 +17,31 @@ function App() {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
   const [isHeaderResizing, setIsHeaderResizing] = useState(false)
   const [isFooterResizing, setIsFooterResizing] = useState(false)
+  const [nameInput, setNameInput] = useState('')
+  const [messageInput, setMessageInput] = useState('')
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    const savedPosts = localStorage.getItem(FOOTER_POSTS_STORAGE_KEY)
+
+    if (!savedPosts) {
+      return
+    }
+
+    try {
+      const parsedPosts = JSON.parse(savedPosts)
+
+      if (Array.isArray(parsedPosts)) {
+        setPosts(parsedPosts)
+      }
+    } catch {
+      setPosts([])
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem(FOOTER_POSTS_STORAGE_KEY, JSON.stringify(posts))
+  }, [posts])
 
   useEffect(() => {
     const headerResize = document.getElementById('header-resize')
@@ -131,6 +157,30 @@ function App() {
     height: footerHeight ? `${footerHeight}px` : undefined,
   }
 
+  const submitPost = (event) => {
+    event.preventDefault()
+
+    const trimmedName = nameInput.trim()
+    const trimmedMessage = messageInput.trim()
+
+    if (!trimmedName || !trimmedMessage) {
+      return
+    }
+
+    const newPost = {
+      id: Date.now(),
+      name: trimmedName,
+      message: trimmedMessage,
+    }
+
+    setPosts((prev) => [...prev, newPost])
+    setMessageInput('')
+  }
+
+  const deletePost = (postId) => {
+    setPosts((prev) => prev.filter((post) => post.id !== postId))
+  }
+
   return (
     <>
       <header id="header" style={headerStyle}>
@@ -162,7 +212,7 @@ function App() {
       <main id="main" style={mainStyle}>
         <div className="hero">
           <h1>Web班 紹介サイト</h1>
-          <img src="/images/main.jpg" alt="Web班メイン画像" />
+          <img src="\src\assets\main.jpg" alt="Web班メイン画像" />
         </div>
 
         <div className="content gaiyou" id="gaiyou">
@@ -176,7 +226,7 @@ function App() {
             <div>世界大会に出場！</div>
           </div>
           <div className="right">
-            <img src="/images/cb31bb2ce4cbb8de9a160220de2e633e_t.jpeg" alt="活動写真" />
+            <img src="\src\assets\cb31bb2ce4cbb8de9a160220de2e633e_t.jpeg" alt="活動写真" />
           </div>
         </div>
 
@@ -232,8 +282,51 @@ function App() {
           className={isFooterResizing ? 'active' : ''}
         ></div>
         <div className="terminal">
-          <input type="text" className="command" placeholder="メッセージ" />
-          <span className="prompt"></span>
+          <div className="posts">
+            {posts.map((post) => (
+              <div className="post-row" key={post.id}>
+                <span className="post-text">
+                  名前: {post.name}&gt;メッセージ: {post.message}
+                </span>
+                <button
+                  type="button"
+                  className="delete-post"
+                  onClick={() => deletePost(post.id)}
+                >
+                  削除
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <form className="command-form" onSubmit={submitPost}>
+            <label className="command-label" htmlFor="name-input">
+              名前:
+            </label>
+            <input
+              id="name-input"
+              type="text"
+              className="command name-command"
+              value={nameInput}
+              onChange={(event) => setNameInput(event.target.value)}
+              placeholder="名前"
+            />
+            <span className="prompt">&gt;</span>
+            <label className="command-label" htmlFor="message-input">
+              メッセージ:
+            </label>
+            <input
+              id="message-input"
+              type="text"
+              className="command"
+              value={messageInput}
+              onChange={(event) => setMessageInput(event.target.value)}
+              placeholder="メッセージ"
+            />
+            <button type="submit" className="send-post">
+              投稿
+            </button>
+          </form>
         </div>
       </footer>
     </>

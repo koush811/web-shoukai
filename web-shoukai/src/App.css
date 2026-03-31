@@ -262,9 +262,64 @@ header a:nth-child(2n) {
 }
 
 .terminal {
+  width: 100%;
+  height: 100%;
+  padding: 14px 20px 12px;
+  box-sizing: border-box;
   display: flex;
-  width: 90%;
-  margin: auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+.posts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.post-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  
+  gap: 10px;
+}
+
+.post-text {
+  color: #d4d4d4;
+  font-size: 14px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.delete-post {
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(80, 80, 80);
+  color: red;
+  font-size: 12px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+
+.delete-post:hover {
+  background-color: #2a2a2a;
+}
+
+.command-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.command-label {
+  color: #ffffff;
+  white-space: nowrap;
 }
 
 .prompt {
@@ -273,16 +328,34 @@ header a:nth-child(2n) {
 }
 
 .command {
-  flex: 1;
+  min-width: 120px;
   background: transparent;
-  border: none;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
+  padding: 6px 8px;
+  border: none;
+}
+
+.name-command {
+  max-width: 180px;
 }
 
 .command:focus {
-  outline: none;
+  outline: 1px solid #4fc3f7;
+}
+
+.send-post {
+  border: 1px solid #2d2d2d;
+  background-color: #0e639c;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.send-post:hover {
+  background-color: #1177bb;
 }
 
 @media (max-width: 1024px) {
