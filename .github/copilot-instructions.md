@@ -25,6 +25,9 @@
      └── src/
          ├── components/ 
          ├── pages/ 
+         |     ├── Activity.jsx
+         |     ├── QA.jsx
+         |     ├── Shoukai.jsx
          ├── styles/ 
          └── assets/
   - 関数およびコンポーネントは単一責任とする
@@ -42,11 +45,32 @@
     - Header(サイドバー)
       - 画面左側に配置
       - widthはユーザーが調整可能とする（実装済み）
-      - 表示内容は変えずにstyleだけ変更してほしい
+      - headerのwidthが0の時は中身を非表示にする
+      - VsCodeのサイドバーを参考に、背景色はダークグレー、文字色は白とする(images\sample.pngを参考に)
+      - 現在id="sidebtn"でスライドするように実装されているが#sidebtnを削除しページ遷移リンクを上部、ページ移動リンクを下部に配意する
+      - リンクを配置する
+        - ページ遷移リンク（上部）
+          - 活動内容(Activity.jsxに遷移)
+          - Q&A(QA.jsxに遷移)
+          - 作品紹介(Shoukai.jsxに遷移)
+            - ReactRouterを使用
+        - ページ移動リンク（下部）
+          - 学校ホームページ
+          - 専攻科紹介ページ
+          - Stem研究部紹介ページ
+            - aタグを使用して外部リンクに遷移させる(リンクは後で張るので、#を指定しておく)
     - Main(メインコンテンツ)
       - 画面右側に配置
       - Headerの幅に応じて可変レイアウトとする
       - 表示内容は変えずにstyleだけ変更してほしい
+      - activity.jsx
+        -  class="gaiyou"とclass="hero"の内容をactivity.jsxに表示
+      - QA.jsx
+        -  class="questions"とclass="hero"の内容をQA.jsxに表示
+      - Shoukai.jsx
+        -  class="taikai"の内容をShoukai.jsxに表示
+        -  class="shoukai"の内容をShoukai.jsxに表示
+        -  とclass="hero"の内容をShoukai.jsxに表示
     - Footer(投稿フォーム)
       - 画面下部に配置
       - Headerの幅に応じて可変レイアウトとする

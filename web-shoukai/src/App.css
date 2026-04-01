@@ -7,7 +7,6 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: #000;
   overflow: visible;
   z-index: 1000;
@@ -29,65 +28,57 @@
   background-color: #4fc3f7;
 }
 
-#sidebtn {
-  width: 95%;
-  display: flex;
-  padding-left: 5%;
-  color: white;
-  background-color: #000;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.key {
-  margin-right: 10px;
-}
-
-.slideWrapper {
-  position: relative;
+.header-nav {
   width: 100%;
   height: 100%;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
   padding: 0;
-  overflow: hidden;
+  margin: 0;
 }
 
-.links {
+.nav-section {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  transition: all 0.5s ease-in-out;
 }
 
-.links:nth-child(1) {
-  position: absolute;
-  top: 0;
-  left: 0;
+.nav-section.page-links {
+  flex: 0 0 auto;
 }
 
-.links:nth-child(2) {
-  position: absolute;
-  top: 0;
-  left: 100%;
+.nav-section.external-links {
+  flex: 1 0 auto;
+  margin-top: 20px;
 }
 
-.links.scrolled:nth-child(1) {
-  left: -100%;
-}
-
-.links.scrolled:nth-child(2) {
-  left: 0;
-}
-
-header a {
+.nav-link {
   text-decoration: none;
   color: white;
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 5px 0;
   background-color: rgb(62, 62, 62);
+  transition: background-color 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
 }
 
-header a:nth-child(2n) {
+.nav-link:nth-child(2n) {
   background-color: #000;
+}
+
+.nav-link:hover {
+  background-color: #1e1e1e;
+}
+
+.nav-link.active {
+  background-color: #0e639c;
+  color: #4fc3f7;
+  font-weight: bold;
 }
 
 #main {
@@ -298,15 +289,15 @@ header a:nth-child(2n) {
 .delete-post {
   border-radius: 5px;
   border: none;
-  background-color: rgb(80, 80, 80);
-  color: red;
+  color: #d4d4d4;
+  background-color: rgb(0, 0, 0);
   font-size: 12px;
   padding: 3px 8px;
   cursor: pointer;
 }
 
-.delete-post:hover {
-  background-color: #2a2a2a;
+.delete-post:hover{
+  background-color: rgb(80, 80, 80);
 }
 
 .command-form {
@@ -318,7 +309,7 @@ header a:nth-child(2n) {
 }
 
 .command-label {
-  color: #ffffff;
+  color: #d4d4d4;
   white-space: nowrap;
 }
 
@@ -330,7 +321,7 @@ header a:nth-child(2n) {
 .command {
   min-width: 120px;
   background: transparent;
-  color: white;
+  color: #d4d4d4;
   font-size: 14px;
   margin: 0;
   padding: 6px 8px;
@@ -341,21 +332,19 @@ header a:nth-child(2n) {
   max-width: 180px;
 }
 
-.command:focus {
-  outline: 1px solid #4fc3f7;
-}
 
 .send-post {
-  border: 1px solid #2d2d2d;
-  background-color: #0e639c;
-  color: #fff;
+  border: none;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #d4d4d4;
   padding: 6px 10px;
   font-size: 13px;
   cursor: pointer;
 }
 
 .send-post:hover {
-  background-color: #1177bb;
+  background-color: rgb(40, 40, 40)
 }
 
 @media (max-width: 1024px) {

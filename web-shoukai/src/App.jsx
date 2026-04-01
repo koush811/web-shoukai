@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import './App.css'
+
+import Activity from './pages/Activity'
+import QA from './pages/QA'
+import Shoukai from './pages/Shoukai'
 
 const HEADER_MIN_WIDTH = 300
 const HEADER_HIDE_THRESHOLD_OFFSET = 100
 const FOOTER_POSTS_STORAGE_KEY = 'FOOTER_POSTS'
 
-function App() {
-  const [isLinksScrolled, setIsLinksScrolled] = useState(false)
-  const [activeQuestion, setActiveQuestion] = useState(null)
+function AppLayout() {
   const [headerWidth, setHeaderWidth] = useState(HEADER_MIN_WIDTH)
   const [footerHeight, setFooterHeight] = useState(null)
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
@@ -126,25 +125,6 @@ function App() {
     }
   }, [])
 
-  const questions = [
-    {
-      question: 'Q: プログラミングやったことなくてもでも大丈夫？',
-      answer: 'A: もちろん、やる気さえあれば、初心者でも大歓迎',
-    },
-    {
-      question: 'Q: どんな技術を使うの？',
-      answer: 'A: HTML,CSS,JavaScript,PHPなど',
-    },
-    {
-      question: 'Q:Web班に向いている人は？',
-      answer: 'A: 何か作るのが好きな人　パソコン触るのが好きな人',
-    },
-    {
-      question: 'Q: 先輩方は優しい？',
-      answer: 'A: たぶん、おそらく優しいと思われます',
-    },
-  ]
-
   const footerWidth = Math.max(viewportWidth - headerWidth, 0)
   const headerStyle = { width: `${headerWidth}px` }
   const mainStyle = {
@@ -188,92 +168,38 @@ function App() {
           id="header-resize"
           className={isHeaderResizing ? 'active' : ''}
         ></div>
-        <div id="sidebtn" onClick={() => setIsLinksScrolled((prev) => !prev)}>
-          <div className="key">&gt;</div> リンク表示
-        </div>
-        <div className="slideWrapper">
-          <div className={`links ${isLinksScrolled ? 'scrolled' : ''}`}>
-            <a href="#gaiyou">活動内容</a>
-            <a href="#qa">Q&amp;A</a>
-            <a href="#sakuhin">作品紹介</a>
+        <nav className="header-nav">
+          <div className="nav-section page-links">
+            <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              活動内容
+            </NavLink>
+            <NavLink to="/qa" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              Q&amp;A
+            </NavLink>
+            <NavLink to="/shoukai" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              作品紹介
+            </NavLink>
           </div>
-          <div className={`links ${isLinksScrolled ? 'scrolled' : ''}`}>
-            <a href="https://aichi-te.aichi-c.ed.jp/" target="_blank" rel="noreferrer">
+          <div className="nav-section external-links">
+            <a href="https://aichi-te.aichi-c.ed.jp/" target="_blank" rel="noreferrer" className="nav-link">
               学校ホームページ
             </a>
-            <a href="https://www.aichi-te-ad.jp/" target="_blank" rel="noreferrer">
+            <a href="https://www.aichi-te-ad.jp/" target="_blank" rel="noreferrer" className="nav-link">
               専攻科ホームページ
             </a>
-            <a href="">Stem研究部ホームページ</a>
+            <a href="#" className="nav-link">
+              Stem研究部ホームページ
+            </a>
           </div>
-        </div>
+        </nav>
       </header>
 
       <main id="main" style={mainStyle}>
-        <div className="hero">
-          <h1>Web班 紹介サイト</h1>
-          <img src="\src\assets\main.jpg" alt="Web班メイン画像" />
-        </div>
-
-        <div className="content gaiyou" id="gaiyou">
-          <div className="dev left">
-            <h2>活動内容</h2>
-            <h3>主にやっていること</h3>
-            <div>webサイト、webアプリの制作(webでできることは何をしてもOK)</div>
-            <h3>面白いところ</h3>
-            <div>自由度が高い！</div>
-            <h3>班の目標</h3>
-            <div>世界大会に出場！</div>
-          </div>
-          <div className="right">
-            <img src="\src\assets\cb31bb2ce4cbb8de9a160220de2e633e_t.jpeg" alt="活動写真" />
-          </div>
-        </div>
-
-        <div className="content questions" id="qa">
-          <h2>Q&amp;A</h2>
-          <div className="qanda">
-            {questions.map((item, index) => (
-              <div
-                key={item.question}
-                className="question"
-                onClick={() =>
-                  setActiveQuestion((prev) => (prev === index ? null : index))
-                }
-              >
-                {item.question}
-                <div className={`answer ${activeQuestion === index ? 'active' : ''}`}>
-                  {item.answer}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="content taikai">
-          <h2>大会での実績</h2>
-        </div>
-
-        <div className="content sakuhin" id="sakuhin">
-          <h2>作品紹介</h2>
-          <Swiper
-            modules={[Navigation]}
-            navigation
-            loop
-            className="swiper"
-            slidesPerView={1}
-          >
-            <SwiperSlide>
-              <h2>1</h2>
-            </SwiperSlide>
-            <SwiperSlide>
-              <h2>2</h2>
-            </SwiperSlide>
-            <SwiperSlide>
-              <h2>3</h2>
-            </SwiperSlide>
-          </Swiper>
-        </div>
+        <Routes>
+          <Route path="/" element={<Activity />} />
+          <Route path="/qa" element={<QA />} />
+          <Route path="/shoukai" element={<Shoukai />} />
+        </Routes>
       </main>
 
       <footer id="footer" style={footerStyle}>
@@ -286,14 +212,14 @@ function App() {
             {posts.map((post) => (
               <div className="post-row" key={post.id}>
                 <span className="post-text">
-                  名前: {post.name}&gt;メッセージ: {post.message}
+                  C:\stem\web-shoukai\ {post.name}&gt; {post.message}
                 </span>
                 <button
                   type="button"
                   className="delete-post"
                   onClick={() => deletePost(post.id)}
                 >
-                  削除
+                  "削除"
                 </button>
               </div>
             ))}
@@ -324,7 +250,7 @@ function App() {
               placeholder="メッセージ"
             />
             <button type="submit" className="send-post">
-              投稿
+              "投稿"
             </button>
           </form>
         </div>
@@ -333,4 +259,14 @@ function App() {
   )
 }
 
+function App() {
+  return (
+    <BrowserRouter>
+      <AppLayout />
+    </BrowserRouter>
+  )
+}
+
 export default App
+
+
