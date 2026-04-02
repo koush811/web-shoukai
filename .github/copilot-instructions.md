@@ -63,6 +63,7 @@
       - 画面右側に配置
       - Headerの幅に応じて可変レイアウトとする
       - 表示内容は変えずにstyleだけ変更してほしい
+      - class="content"のcssを.mdの文法にのっとったのuiにする
       - activity.jsx
         -  class="gaiyou"とclass="hero"の内容をactivity.jsxに表示
       - QA.jsx

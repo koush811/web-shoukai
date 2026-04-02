@@ -126,6 +126,7 @@ function AppLayout() {
   }, [])
 
   const footerWidth = Math.max(viewportWidth - headerWidth, 0)
+  const isHeaderCollapsed = headerWidth === 0
   const headerStyle = { width: `${headerWidth}px` }
   const mainStyle = {
     marginLeft: `${headerWidth}px`,
@@ -168,7 +169,8 @@ function AppLayout() {
           id="header-resize"
           className={isHeaderResizing ? 'active' : ''}
         ></div>
-        <nav className="header-nav">
+        <nav className={`header-nav${isHeaderCollapsed ? ' hidden' : ''}`}>
+        <div className='link-title'>＞ページ移動</div>
           <div className="nav-section page-links">
             <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
               活動内容
@@ -180,6 +182,7 @@ function AppLayout() {
               作品紹介
             </NavLink>
           </div>
+          <div className='link-title'>＞外部リンク</div>
           <div className="nav-section external-links">
             <a href="https://aichi-te.aichi-c.ed.jp/" target="_blank" rel="noreferrer" className="nav-link">
               学校ホームページ
