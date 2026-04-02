@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 function QA() {
   const [activeQuestion, setActiveQuestion] = useState(null)
-
   const questions = [
     {
       question: 'Q: プログラミングやったことなくてもでも大丈夫？',
@@ -13,8 +12,8 @@ function QA() {
       answer: 'A: HTML,CSS,JavaScript,PHPなど',
     },
     {
-      question: 'Q:Web班に向いている人は？',
-      answer: 'A: 何か作るのが好きな人　パソコン触るのが好きな人',
+      question: 'Q: Web班に向いている人は？',
+      answer: 'A: 何か作るのが好きな人 パソコン触るのが好きな人',
     },
     {
       question: 'Q: 先輩方は優しい？',
@@ -30,20 +29,21 @@ function QA() {
       </div>
 
       <div className="content questions" id="qa">
-        <h2>Q&amp;A</h2>
-        <div className="qanda">
+        <div className="markdown-content">
+          <div className="markdown-line blue" data-heading="true"># Q&A</div>
           {questions.map((item, index) => (
-            <div
-              key={item.question}
-              className="question"
-              onClick={() =>
-                setActiveQuestion((prev) => (prev === index ? null : index))
-              }
-            >
-              {item.question}
-              <div className={`answer ${activeQuestion === index ? 'active' : ''}`}>
-                {item.answer}
-              </div>
+            <div key={item.question}>
+              <button
+                type="button"
+                className="markdown-line qa-question-line"
+                onClick={() => setActiveQuestion((prev) => (prev === index ? null : index))}
+              >
+                - {item.question}
+              </button>
+              {activeQuestion === index && (
+                <div className="markdown-line qa-answer-line">- {item.answer}</div>
+              )}
+              <div className="markdown-line"></div>
             </div>
           ))}
         </div>

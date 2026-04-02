@@ -12,11 +12,16 @@ function Shoukai() {
       </div>
 
       <div className="content taikai">
-        <h2>大会での実績</h2>
+        <div className="markdown-content">
+          <div className="markdown-line blue" data-heading="true"># 大会での実績</div>
+        </div>
       </div>
 
       <div className="content sakuhin" id="sakuhin">
-        <h2>作品紹介</h2>
+        <div className="markdown-content">
+          <div className="markdown-line blue" data-heading="true"># 作品紹介</div>
+          <div className="markdown-line">- スライダーで表示する作品を切り替えることができます</div>
+        </div>
         <Swiper
           modules={[Navigation]}
           navigation

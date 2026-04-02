@@ -8,13 +8,17 @@ function Activity() {
 
       <div className="content gaiyou" id="gaiyou">
         <div className="dev left">
-          <h2>活動内容</h2>
-          <h3>主にやっていること</h3>
-          <div>webサイト、webアプリの制作(webでできることは何をしてもOK)</div>
-          <h3>面白いところ</h3>
-          <div>自由度が高い！</div>
-          <h3>班の目標</h3>
-          <div>世界大会に出場！</div>
+          <div className="markdown-content">
+            <div className="markdown-line blue" data-heading="true"># 活動内容</div>
+            <div className="markdown-line">- 主にやっていること</div>
+            <div className="markdown-line">- webサイト、webアプリの制作(webでできることは何をしてもOK)</div>
+            <div className="markdown-line"></div>
+            <div className="markdown-line">- 面白いところ</div>
+            <div className="markdown-line">- 自由度が高い！</div>
+            <div className="markdown-line"></div>
+            <div className="markdown-line">- 班の目標</div>
+            <div className="markdown-line">- 世界大会に出場！</div>
+          </div>
         </div>
         <div className="right">
           <img src="/src/assets/cb31bb2ce4cbb8de9a160220de2e633e_t.jpeg" alt="活動写真" />
