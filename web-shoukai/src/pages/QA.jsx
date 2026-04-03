@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import HeroCanvas from '../components/HeroCanvas'
 
 function QA() {
   const [activeQuestion, setActiveQuestion] = useState(null)
@@ -23,10 +24,7 @@ function QA() {
 
   return (
     <>
-      <div className="hero">
-        <h1>Web班 紹介サイト</h1>
-        <img src="/src/assets/main.jpg" alt="Web班メイン画像" />
-      </div>
+      <HeroCanvas title="Web班 紹介サイト" />
 
       <div className="content questions" id="qa">
         <div className="markdown-content">

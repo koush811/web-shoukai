@@ -1,15 +1,13 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
+import HeroCanvas from '../components/HeroCanvas'
 import 'swiper/css'
 import 'swiper/css/navigation'
 
 function Shoukai() {
   return (
     <>
-      <div className="hero">
-        <h1>Web班 紹介サイト</h1>
-        <img src="/src/assets/main.jpg" alt="Web班メイン画像" />
-      </div>
+      <HeroCanvas title="Web班 紹介サイト" />
 
       <div className="content taikai">
         <div className="markdown-content">
@@ -29,14 +27,26 @@ function Shoukai() {
           className="swiper"
           slidesPerView={1}
         >
-          <SwiperSlide>
+          <SwiperSlide className='work-slide'>
             <h2>1</h2>
+            <iframe src="https://hirorogo.github.io/openforge-mcp/" className='preview' frameBorder="0"></iframe>
+            <a href="https://hirorogo.github.io/openforge-mcp/" target="_blank" rel="noopener noreferrer">
+              別タブで開く
+            </a>
           </SwiperSlide>
-          <SwiperSlide>
+          <SwiperSlide className='work-slide'>
             <h2>2</h2>
+            <iframe src="https://koush811.github.io/web/" className='preview' frameborder="0"></iframe>
+            <a href="https://koush811.github.io/web/" target="_blank" rel="noopener noreferrer">
+              別タブで開く
+            </a>
           </SwiperSlide>
-          <SwiperSlide>
+          <SwiperSlide className='work-slide'>
             <h2>3</h2>
+            <iframe src="https://koush811.github.io/game/" className='preview' frameborder="0"></iframe>
+            <a href="https://koush811.github.io/game/" target="_blank" rel="noopener noreferrer">
+              別タブで開く
+            </a>
           </SwiperSlide>
         </Swiper>
       </div>

@@ -1,10 +1,9 @@
+import HeroCanvas from '../components/HeroCanvas'
+
 function Activity() {
   return (
     <>
-      <div className="hero">
-        <h1>Web班 紹介サイト</h1>
-        <img src="/src/assets/main.jpg" alt="Web班メイン画像" />
-      </div>
+      <HeroCanvas title="Web班 紹介サイト" />
 
       <div className="content gaiyou" id="gaiyou">
         <div className="dev left">
